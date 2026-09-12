@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafiq — your private coding agent</title>
+  <meta name="description" content="Rafiq is a private, local-first coding agent for Windows. Bring your own API key, work in your real filesystem, and plan → build → discuss with your project completely on your machine.">
+  <meta name="theme-color" content="#F4F5F7">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      try {
+        var p = localStorage.getItem('rafiq.lp');
+        var s = p ? JSON.parse(p) : {};
+        if (s.theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        if (s.lang === 'ar') { document.documentElement.setAttribute('lang', 'ar'); document.documentElement.setAttribute('dir', 'rtl'); }
+      } catch (e) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Rafiq",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows 7+",
+    "softwareVersion": "0.1.0",
+    "description": "Private, local-first coding agent for Windows. BYOK, plan → build → discuss, zero cloud."
+  }
+  </script>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top" aria-label="Rafiq">
+      <img src="logo.svg" alt="" width="26" height="26">
+      <span>rafiq<span class="brand-dot">.</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#how" data-i18n="nav.how">How it works</a>
+      <a href="#security" data-i18n="nav.security">Privacy</a>
+      <a href="#download" data-i18n="nav.download">Download</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="btn-lang" aria-label="التبديل إلى العربية" title="العربية">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="lang-label" style="font-size:12px;font-weight:700;padding-inline-start:1px;">عربي</span>
+      </button>
+      <button class="icon-btn" id="btn-theme" aria-label="Switch to dark mode" title="Toggle theme">
+        <svg id="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="btn-menu" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg id="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a class="btn btn-primary" href="#download" data-i18n="nav.cta">Download</a>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+    <a href="#features" data-i18n="nav.features">Features</a>
+    <a href="#how" data-i18n="nav.how">How it works</a>
+    <a href="#security" data-i18n="nav.security">Privacy</a>
+    <a href="#download" data-i18n="nav.download">Download</a>
+    <a href="#faq" data-i18n="nav.faq">FAQ</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="badge" data-reveal-onload>
+          <span class="pulse" aria-hidden="true"></span>
+          <span data-i18n="hero.badge">Private · Local-first · BYOK</span>
+        </span>
+        <h1 class="hero-title" id="hero-title" data-reveal-onload>
+          <span data-i18n="hero.title.line1">Your private</span><br>
+          <span class="accent-word" data-i18n="hero.title.line2">coding agent</span><span class="dot">.</span>
+        </h1>
+        <p class="hero-sub" data-reveal-onload data-i18n="hero.sub">
+          Rafiq turns your workspace into an AI-powered coding companion that runs on this machine only.
+          Describe a goal — Rafiq plans, then builds — while your data stays yours.
+        </p>
+        <div class="hero-cta" data-reveal-onload>
+          <a class="btn btn-primary btn-large" id="cta-hero" href="https://github.com/abdokem660-dev/rafiq/releases/download/v0.1.0/rafiq-win7.zip" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="hero.cta">Download Rafiq</span>
+          </a>
+          <a class="btn btn-ghost btn-large" href="#how" data-i18n="hero.cta2">See how it works</a>
+        </div>
+        <div class="hero-meta">
+          <span>v0.1.0</span>
+          <span class="sep" aria-hidden="true">·</span>
+          <span data-i18n="hero.meta1">Windows 7 — 11</span>
+          <span class="sep" aria-hidden="true">·</span>
+          <span>Node 18+</span>
+          <span class="sep" aria-hidden="true">·</span>
+          <span data-i18n="hero.meta2">Zero dependencies</span>
+        </div>
+      </div>
+
+      <div class="terminal" data-reveal-onload role="img" aria-label="Rafiq terminal after start">
+        <div class="terminal-bar">
+          <span class="tb-dot" aria-hidden="true"></span>
+          <span class="tb-dot" aria-hidden="true"></span>
+          <span class="tb-dot" aria-hidden="true"></span>
+          <span class="tb-title">rafiq@workspace</span>
+        </div>
+        <div class="terminal-body">
+          <div class="term-line"><span class="term-prompt">rafiq@workspace</span><span class="term-sep">:~$ </span><span class="term-cmd">rafiq --init</span></div>
+          <div class="term-line"><span class="term-dim">resolving workspace owner/rafiq-workspace ...</span></div>
+          <div class="term-line"><span class="term-dim">scanning tree ... </span><span class="term-accent">14 files</span><span class="term-dim"> · </span><span class="term-accent">3 modules</span></div>
+          <div class="term-line"><span class="term-dim">agent ready. mode=</span><span class="term-accent">build</span><span class="term-dim"> · require=</span><span class="term-accent">live</span></div>
+          <div class="term-line term-dim">→ <span data-i18n="hero.term.ready">serving at http://localhost:3000</span><span class="term-cursor" aria-hidden="true"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TRUST STRIP ═══════════════════ -->
+  <div class="trust">
+    <div class="trust-inner">
+      <span class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span data-i18n="trust.k1">Key stays in your browser</span>
+      </span>
+      <span class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        <span data-i18n="trust.k2">Localhost only</span>
+      </span>
+      <span class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        <span data-i18n="trust.k3">Nothing leaves your machine</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ FEATURES ═══════════════════ -->
+  <section class="section" id="features" aria-labelledby="features-title">
+    <div class="section-head reveal">
+      <p class="section-kicker" data-i18n="features.kicker">Why Rafiq</p>
+      <h2 class="section-title" id="features-title" data-i18n="features.title">One agent, fully under your control</h2>
+      <p class="section-sub" data-i18n="features.sub">Built for two humans and one machine — with zero cloud, zero dependencies, and the code you can read.</p>
+    </div>
+
+    <div class="bento">
+      <article class="bento-card bento-wide reveal">
+        <span class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+        </span>
+        <h3 data-i18n="features.byok.title">Bring your own key (BYOK)</h3>
+        <p data-i18n="features.byok.body">Your API key lives in the browser and is sent to the model provider with every request through a local proxy. The server never stores it, and no account with Rafiq is ever needed.</p>
+      </article>
+
+      <article class="bento-card reveal">
+        <span class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+        </span>
+        <h3 data-i18n="features.modes.title">Plan → Build → Discuss</h3>
+        <p data-i18n="features.modes.body">Review a plan before approval, let the agent build in your project, or simply discuss your code. Work is streamed live, step by step.</p>
+      </article>
+
+      <article class="bento-card reveal">
+        <span class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </span>
+        <h3 data-i18n="features.fs.title">Real filesystem, sandboxed</h3>
+        <p data-i18n="features.fs.body">Point Rafiq at any real project folder. It edits only inside the chosen workspace — enforced by a path-containment check — and never touches the rest of your disk.</p>
+      </article>
+
+      <article class="bento-card bento-wide reveal">
+        <span class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
+        <h3 data-i18n="features.prov.title">Every model family you like</h3>
+        <p data-i18n="features.prov.body">Rafiq talks to any OpenAI-compatible endpoint, so you pick the brain — not the other way around.</p>
+        <div class="prov-row" aria-label="Supported providers">
+          <span class="prov-chip">OpenAI</span>
+          <span class="prov-chip">DeepSeek</span>
+          <span class="prov-chip">Groq</span>
+          <span class="prov-chip">OpenRouter</span>
+          <span class="prov-chip">opencode zen</span>
+          <span class="prov-chip">NVIDIA NIM</span>
+        </div>
+      </article>
+
+      <article class="bento-card reveal">
+        <span class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </span>
+        <h3 data-i18n="features.safety.title">Safety by default</h3>
+        <p data-i18n="features.safety.body">Dangerous operations are locked. Enable them per workspace, and every change gets a git snapshot you can return to.</p>
+      </article>
+
+      <article class="bento-card reveal">
+        <span class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <h3 data-i18n="features.sessions.title">Your history, your device</h3>
+        <p data-i18n="features.sessions.body">Every session, plan and conversation is saved locally on your machine. No server logs, no analytics, nothing to mine.</p>
+      </article>
+
+      <article class="bento-card reveal">
+        <span class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
+        <h3 data-i18n="features.i18n.title">عربي &amp; English</h3>
+        <p data-i18n="features.i18n.body">Full Arabic and English interfaces, with warm light and OLED dark themes — right at home in the Cairo dev scene.</p>
+      </article>
+
+      <article class="bento-card reveal">
+        <span class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <h3 data-i18n="features.files.title">Files built in</h3>
+        <p data-i18n="features.files.body">An explorer and code viewer with syntax-friendly preview and one-click copy — your browser becomes a mini IDE.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
+  <section class="section" id="how" aria-labelledby="how-title">
+    <div class="section-head reveal">
+      <p class="section-kicker" data-i18n="how.kicker">Getting started</p>
+      <h2 class="section-title" id="how-title" data-i18n="how.title">Up and running in three steps</h2>
+      <p class="section-sub" data-i18n="how.sub">No installer, no accounts, no sign-up. Just a folder and a browser.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <h3 data-i18n="how.s1.title">Unzip &amp; launch</h3>
+        <p data-i18n="how.s1.body">Extract a package anywhere and double-click start.bat. Rafiq starts its local server and opens your browser — no install needed.</p>
+        <p class="mono">start.bat · stop.bat</p>
+      </div>
+      <div class="step reveal">
+        <h3 data-i18n="how.s2.title">Add your key</h3>
+        <p data-i18n="how.s2.body">Open Settings, pick a provider and paste your API key. It is saved in your browser only, never on the server.</p>
+        <p class="mono">Settings → API key (BYOK)</p>
+      </div>
+      <div class="step reveal">
+        <h3 data-i18n="how.s3.title">Describe the goal</h3>
+        <p data-i18n="how.s3.body">Tell Rafiq what to do. Review the plan, approve, and watch it build — or just ask questions about your code.</p>
+        <p class="mono">plan → build → discuss</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SECURITY ═══════════════════ -->
+  <section class="section" id="security" aria-labelledby="security-title">
+    <div class="section-head reveal">
+      <p class="section-kicker" data-i18n="security.kicker">Privacy</p>
+      <h2 class="section-title" id="security-title" data-i18n="security.title">Where does your data go?</h2>
+      <p class="section-sub" data-i18n="security.sub">Three destinations, two of which are your own machine.</p>
+    </div>
+
+    <div class="sec-grid">
+      <article class="sec-card reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span data-i18n="security.s1.title">The API key → browser only</span>
+        </h3>
+        <p data-i18n="security.s1.body">Stored in <code>localStorage</code> on your device. Sent over the local server to the provider; the server never persists it.</p>
+      </article>
+      <article class="sec-card reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span data-i18n="security.s2.title">The app → localhost only</span>
+        </h3>
+        <p data-i18n="security.s2.body">Rafiq binds to <code>127.0.0.1</code> and sends strict security headers. No cloud service, no telemetry, no account.</p>
+      </article>
+      <article class="sec-card reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          <span data-i18n="security.s3.title">The request → the model provider</span>
+        </h3>
+        <p data-i18n="security.s3.body">The only outbound call is to the provider you choose, carrying exactly the context you send. Nothing else leaves the machine.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ DOWNLOAD ═══════════════════ -->
+  <section class="section" id="download" aria-labelledby="download-title">
+    <div class="section-head reveal">
+      <p class="section-kicker" data-i18n="download.kicker">Get it</p>
+      <h2 class="section-title" id="download-title" data-i18n="download.title">Download Rafiq for Windows</h2>
+      <p class="section-sub" data-i18n="download.sub">Two packages, same product. Pick the one that fits your machine. SHA-256 hashes included for verification.</p>
+    </div>
+
+    <div class="dl-grid">
+      <article class="dl-card featured reveal">
+        <div class="dl-top">
+          <div>
+            <h3>rafiq-win7.zip</h3>
+            <p class="dl-use" data-i18n="down.win7.use">For everything — including Windows 7, no Node needed. Portable Node is bundled.</p>
+          </div>
+          <span class="dl-badge" data-i18n="down.win7.badge">Recommended</span>
+        </div>
+        <dl class="dl-specs">
+          <div class="dl-spec"><dt data-i18n="down.platform">Platform</dt><dd>Windows 7 — 11</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.requires">Requires</dt><dd data-i18n="down.win7.requires">Nothing — portable Node included</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.size">Size</dt><dd>25.2 MB</dd></div>
+        </dl>
+        <a class="dl-btn" href="https://github.com/abdokem660-dev/rafiq/releases/download/v0.1.0/rafiq-win7.zip" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-i18n="down.download">Download</span> <span class="dl-size">· 25.2 MB</span>
+        </a>
+        <details class="checksum">
+          <summary>SHA-256</summary>
+          E254D5B1A51C282FC5BDAF98C654007E2ACDADB1DBBD73C0F82B31758BC9DD3B
+        </details>
+      </article>
+
+      <article class="dl-card reveal">
+        <div class="dl-top">
+          <div>
+            <h3>rafiq-win.zip</h3>
+            <p class="dl-use" data-i18n="down.win.use">For machines with Node 18+ already installed — tiny and fast to grab.</p>
+          </div>
+          <span class="dl-badge" data-i18n="down.win.badge">89 KB</span>
+        </div>
+        <dl class="dl-specs">
+          <div class="dl-spec"><dt data-i18n="down.platform">Platform</dt><dd>Windows 10 — 11</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.requires">Requires</dt><dd data-i18n="down.win.requires">Node.js 18 or newer</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.size">Size</dt><dd>89 KB</dd></div>
+        </dl>
+        <a class="dl-btn" href="https://github.com/abdokem660-dev/rafiq/releases/download/v0.1.0/rafiq-win.zip" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-i18n="down.download">Download</span> <span class="dl-size">· 89 KB</span>
+        </a>
+        <details class="checksum">
+          <summary>SHA-256</summary>
+          FE37C972BEB231C2B16C8FA5ECB33750866877C0DB9E8C7BBFAF7BE621AB8E3A
+        </details>
+      </article>
+    </div>
+
+    <p class="dl-note" data-i18n="download.note">
+      Both packages include PowerShell-free, dependency-free scripts: install.bat, start.bat and stop.bat.
+      README.md inside explains every step. Nothing is executed until you run it.
+    </p>
+  </section>
+
+  <!-- ═══════════════════ FAQ ═══════════════════ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="section-head reveal">
+      <p class="section-kicker" data-i18n="faq.kicker">FAQ</p>
+      <h2 class="section-title" id="faq-title" data-i18n="faq.title">Common questions</h2>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span data-i18n="faq.q1">Do I need Node.js?</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p data-i18n="faq.a1">No. Take the portable package (rafiq-win7.zip) and Node runs straight from the zip. If you already have Node 18+, the tiny 89 KB package is all you need.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span data-i18n="faq.q2">Where is my API key stored?</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p data-i18n="faq.a2">Only in your browser. Rafiq forwards your request to the provider through a local proxy and never writes the key to disk or any server.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span data-i18n="faq.q3">Can Rafiq touch files outside the workspace?</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p data-i18n="faq.a3">No. The server enforces a path-containment check, respects .rafiq-ignore files, and blocks dangerous shell actions unless you explicitly enable them for the workspace.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span data-i18n="faq.q4">Does it work offline?</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p data-i18n="faq.a4">The whole app, server and agent loop run locally. The only thing needing the internet is the call to your model provider — because that is where the intelligence lives.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          <span data-i18n="faq.q5">How do I update?</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><p data-i18n="faq.a5">Stop the server, replace the files with the new package and start again. Your sessions and settings live on this device and are kept as-is.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA ═══════════════════ -->
+  <div class="cta-band">
+    <div class="cta-inner reveal">
+      <h2 data-i18n="cta.title">Ready when you are.</h2>
+      <p data-i18n="cta.sub">Free, local and yours forever. The descent into your own codebase starts with a single download.</p>
+      <a class="btn btn-primary btn-large" href="https://github.com/abdokem660-dev/rafiq/releases/download/v0.1.0/rafiq-win7.zip" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-i18n="cta.cta">Download Rafiq</span>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.svg" alt="" width="22" height="22">
+      <span>rafiq<span class="brand-dot">.</span></span>
+    </div>
+    <div class="footer-meta">
+      <span>v0.1.0</span>
+      <span>© 2026 Rafiq</span>
+      <span data-i18n="footer.slogan">Private coding agent for two humans.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
