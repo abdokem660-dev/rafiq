@@ -551,6 +551,8 @@ html[data-theme="dark"] .dl-badge { color: var(--accent); }
 .checksum[open] summary { margin-bottom: 6px; }
 .checksum a { color: var(--accent-tx); font-family: var(--font); font-size: 12.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 .checksum a:hover { color: var(--text); }
+.checksum span { font-family: var(--font); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; margin-inline-end: 6px; }
+.checksum code { display: inline; word-break: break-all; color: var(--text-2); }
 
 .checksum {
   font-family: var(--mono);
