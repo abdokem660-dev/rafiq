@@ -1,5 +1,8 @@
 # Rafiq — your private coding agent
 
+[![Build Windows app](https://github.com/abdokem660-dev/rafiq/actions/workflows/build-windows.yml/badge.svg)](https://github.com/abdokem660-dev/rafiq/actions/workflows/build-windows.yml)
+[![Latest release](https://img.shields.io/github/v/release/abdokem660-dev/rafiq?label=download)](https://github.com/abdokem660-dev/rafiq/releases/latest)
+
 Rafiq is a local-first AI coding agent for Windows. Open a folder, describe a
 goal, and Rafiq plans, then builds — with your own API key, on your own machine.
 
@@ -38,7 +41,7 @@ safety model and development commands.
 cd desktop
 npm install
 npm start        # desktop app
-npm test         # unit + end-to-end tests, no network needed
+npm test         # unit + end-to-end + UI tests, no network needed
 npm run dist:win # build the Windows installer + portable zip
 ```
 
