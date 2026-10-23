@@ -1,0 +1,83 @@
+{
+  "name": "rafiq-desktop",
+  "productName": "Rafiq",
+  "version": "0.2.0",
+  "description": "Rafiq \u2014 your private, local-first coding agent for Windows",
+  "main": "src/main/main.js",
+  "author": {
+    "name": "Rafiq",
+    "email": "rafiq@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "server": "node src/main/server.js",
+    "test": "node test/run.js && node test/e2e.js",
+    "test:unit": "node test/run.js",
+    "test:e2e": "node test/e2e.js",
+    "icon": "node scripts/make-icon.js",
+    "dist:win": "electron-builder --win nsis zip --x64",
+    "dist:dir": "electron-builder --dir --win"
+  },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.0.0",
+    "sharp": "^0.34.0"
+  },
+  "build": {
+    "appId": "com.rafiq.desktop",
+    "productName": "Rafiq",
+    "copyright": "Copyright \u00a9 2026 Rafiq",
+    "directories": {
+      "output": "../dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "build/icon.png",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "publisherName": "Rafiq",
+      "legalTrademarks": "Rafiq",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Rafiq",
+      "artifactName": "Rafiq-Setup-${version}.${ext}",
+      "uninstallDisplayName": "Rafiq ${version}",
+      "deleteAppDataOnUninstall": false
+    },
+    "zip": {
+      "artifactName": "Rafiq-${version}-win-x64-portable.${ext}"
+    }
+  },
+  "homepage": "https://github.com/abdokem660-dev/rafiq",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdokem660-dev/rafiq.git"
+  }
+}

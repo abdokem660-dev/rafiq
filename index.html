@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rafiq — your private coding agent</title>
-  <meta name="description" content="Rafiq is a private, local-first coding agent for Windows. Bring your own API key, work in your real filesystem, and plan → build → discuss with your project completely on your machine.">
+  <title>Rafiq — your private coding agent for Windows</title>
+  <meta name="description" content="Rafiq is a private, local-first coding agent for Windows. A real desktop app: open a folder, plan → build → discuss, with your own API key and your data on your machine.">
   <meta name="theme-color" content="#F4F5F7">
+  <meta property="og:title" content="Rafiq — your private coding agent for Windows">
+  <meta property="og:description" content="A private, local-first coding agent as a Windows desktop app. BYOK, plan → build → discuss, sandboxed to the folder you open.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="logo.svg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +31,10 @@
     "@type": "SoftwareApplication",
     "name": "Rafiq",
     "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Windows 7+",
-    "softwareVersion": "0.1.0",
+    "operatingSystem": "Windows 10, Windows 11",
+    "softwareVersion": "0.2.0",
+    "downloadUrl": "https://github.com/abdokem660-dev/rafiq/releases/latest",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "description": "Private, local-first coding agent for Windows. BYOK, plan → build → discuss, zero cloud."
   }
   </script>
@@ -94,20 +100,20 @@
           Describe a goal — Rafiq plans, then builds — while your data stays yours.
         </p>
         <div class="hero-cta" data-reveal-onload>
-          <a class="btn btn-primary btn-large" id="cta-hero" href="https://github.com/abdokem660-dev/rafiq/releases/download/v0.1.0/rafiq-win7.zip" download>
+          <a class="btn btn-primary btn-large" id="cta-hero" href="https://github.com/abdokem660-dev/rafiq/releases/latest" download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             <span data-i18n="hero.cta">Download Rafiq</span>
           </a>
           <a class="btn btn-ghost btn-large" href="#how" data-i18n="hero.cta2">See how it works</a>
         </div>
         <div class="hero-meta">
-          <span>v0.1.0</span>
+          <span>v0.2.0</span>
           <span class="sep" aria-hidden="true">·</span>
-          <span data-i18n="hero.meta1">Windows 7 — 11</span>
+          <span data-i18n="hero.meta1">Windows 10 &amp; 11</span>
           <span class="sep" aria-hidden="true">·</span>
-          <span>Node 18+</span>
+          <span data-i18n="hero.meta3">No Node needed</span>
           <span class="sep" aria-hidden="true">·</span>
-          <span data-i18n="hero.meta2">Zero dependencies</span>
+          <span data-i18n="hero.meta2">Zero cloud</span>
         </div>
       </div>
 
@@ -119,11 +125,12 @@
           <span class="tb-title">rafiq@workspace</span>
         </div>
         <div class="terminal-body">
-          <div class="term-line"><span class="term-prompt">rafiq@workspace</span><span class="term-sep">:~$ </span><span class="term-cmd">rafiq --init</span></div>
-          <div class="term-line"><span class="term-dim">resolving workspace owner/rafiq-workspace ...</span></div>
-          <div class="term-line"><span class="term-dim">scanning tree ... </span><span class="term-accent">14 files</span><span class="term-dim"> · </span><span class="term-accent">3 modules</span></div>
-          <div class="term-line"><span class="term-dim">agent ready. mode=</span><span class="term-accent">build</span><span class="term-dim"> · require=</span><span class="term-accent">live</span></div>
-          <div class="term-line term-dim">→ <span data-i18n="hero.term.ready">serving at http://localhost:3000</span><span class="term-cursor" aria-hidden="true"></span></div>
+          <div class="term-line"><span class="term-prompt">you</span><span class="term-sep">› </span><span class="term-cmd" data-i18n="hero.term.prompt">add a dark mode toggle to the settings page</span></div>
+          <div class="term-line"><span class="term-dim">plan · </span><span data-i18n="hero.term.plan">read src/settings.js, src/theme.css, then add a persisted toggle</span></div>
+          <div class="term-line"><span class="term-dim">approve → build</span></div>
+          <div class="term-line"><span class="term-accent">✓ edit</span> <span class="term-dim">src/theme.css</span> <span class="term-accent">+18</span></div>
+          <div class="term-line"><span class="term-accent">✓ edit</span> <span class="term-dim">src/settings.js</span> <span class="term-accent">+9</span></div>
+          <div class="term-line"><span class="term-accent">✓ run</span> <span class="term-dim">npm test · exit 0</span><span class="term-cursor" aria-hidden="true"></span></div>
         </div>
       </div>
     </div>
@@ -134,11 +141,11 @@
     <div class="trust-inner">
       <span class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span data-i18n="trust.k1">Key stays in your browser</span>
+        <span data-i18n="trust.k1">Key encrypted on your PC</span>
       </span>
       <span class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-        <span data-i18n="trust.k2">Localhost only</span>
+        <span data-i18n="trust.k2">Sandboxed to one folder</span>
       </span>
       <span class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
@@ -161,7 +168,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
         </span>
         <h3 data-i18n="features.byok.title">Bring your own key (BYOK)</h3>
-        <p data-i18n="features.byok.body">Your API key lives in the browser and is sent to the model provider with every request through a local proxy. The server never stores it, and no account with Rafiq is ever needed.</p>
+        <p data-i18n="features.byok.body">Your API key is encrypted with your Windows account (DPAPI) and used only to call the provider you picked. No Rafiq account, no cloud proxy, no key ever leaves your machine.</p>
       </article>
 
       <article class="bento-card reveal">
@@ -240,13 +247,13 @@
 
     <div class="steps">
       <div class="step reveal">
-        <h3 data-i18n="how.s1.title">Unzip &amp; launch</h3>
-        <p data-i18n="how.s1.body">Extract a package anywhere and double-click start.bat. Rafiq starts its local server and opens your browser — no install needed.</p>
-        <p class="mono">start.bat · stop.bat</p>
+        <h3 data-i18n="how.s1.title">Install &amp; launch</h3>
+        <p data-i18n="how.s1.body">Run the installer (or unzip the portable build) and launch Rafiq. It is a native window on your desktop — no terminal, no localhost URL, no Node.js.</p>
+        <p class="mono">Rafiq.exe · setup.exe</p>
       </div>
       <div class="step reveal">
         <h3 data-i18n="how.s2.title">Add your key</h3>
-        <p data-i18n="how.s2.body">Open Settings, pick a provider and paste your API key. It is saved in your browser only, never on the server.</p>
+        <p data-i18n="how.s2.body">Open Settings, pick a provider and paste your API key. It is encrypted with your Windows account and stored only on this PC.</p>
         <p class="mono">Settings → API key (BYOK)</p>
       </div>
       <div class="step reveal">
@@ -268,15 +275,15 @@
     <div class="sec-grid">
       <article class="sec-card reveal">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span data-i18n="security.s1.title">The API key → browser only</span>
+          <span data-i18n="security.s1.title">The API key → this PC only</span>
         </h3>
-        <p data-i18n="security.s1.body">Stored in <code>localStorage</code> on your device. Sent over the local server to the provider; the server never persists it.</p>
+        <p data-i18n="security.s1.body">Encrypted with Windows DPAPI and kept in <code>%APPDATA%\Rafiq</code>. Used only for the request to the provider you chose.</p>
       </article>
       <article class="sec-card reveal">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-          <span data-i18n="security.s2.title">The app → localhost only</span>
+          <span data-i18n="security.s2.title">The app → your folder only</span>
         </h3>
-        <p data-i18n="security.s2.body">Rafiq binds to <code>127.0.0.1</code> and sends strict security headers. No cloud service, no telemetry, no account.</p>
+        <p data-i18n="security.s2.body">Every file operation is checked to stay inside the folder you opened. Shell commands need your approval, dangerous ones are blocked. No telemetry, no account.</p>
       </article>
       <article class="sec-card reveal">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
@@ -299,53 +306,54 @@
       <article class="dl-card featured reveal">
         <div class="dl-top">
           <div>
-            <h3>rafiq-win7.zip</h3>
-            <p class="dl-use" data-i18n="down.win7.use">For everything — including Windows 7, no Node needed. Portable Node is bundled.</p>
+            <h3>Rafiq-Setup-0.2.0.exe</h3>
+            <p class="dl-use" data-i18n="down.setup.use">The Windows installer. Adds Rafiq to your Start menu and desktop, no admin rights and no Node.js needed.</p>
           </div>
-          <span class="dl-badge" data-i18n="down.win7.badge">Recommended</span>
+          <span class="dl-badge" data-i18n="down.setup.badge">Recommended</span>
         </div>
         <dl class="dl-specs">
-          <div class="dl-spec"><dt data-i18n="down.platform">Platform</dt><dd>Windows 7 — 11</dd></div>
-          <div class="dl-spec"><dt data-i18n="down.requires">Requires</dt><dd data-i18n="down.win7.requires">Nothing — portable Node included</dd></div>
-          <div class="dl-spec"><dt data-i18n="down.size">Size</dt><dd>25.2 MB</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.platform">Platform</dt><dd data-i18n="down.win.versions">Windows 10 &amp; 11 (64-bit)</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.requires">Requires</dt><dd data-i18n="down.setup.requires">Nothing else — everything is bundled</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.size">Size</dt><dd>~85 MB</dd></div>
         </dl>
-        <a class="dl-btn" href="https://github.com/abdokem660-dev/rafiq/releases/download/v0.1.0/rafiq-win7.zip" download>
+        <a class="dl-btn" href="https://github.com/abdokem660-dev/rafiq/releases/latest" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-i18n="down.download">Download</span> <span class="dl-size">· 25.2 MB</span>
+          <span data-i18n="down.download">Download</span> <span class="dl-size">· .exe</span>
         </a>
         <details class="checksum">
-          <summary>SHA-256</summary>
-          E254D5B1A51C282FC5BDAF98C654007E2ACDADB1DBBD73C0F82B31758BC9DD3B
+          <summary data-i18n="down.sums">Checksums</summary>
+          <span data-i18n="down.sums.body">Every release ships a SHA256SUMS.txt next to the installer.</span>
         </details>
       </article>
 
       <article class="dl-card reveal">
         <div class="dl-top">
           <div>
-            <h3>rafiq-win.zip</h3>
-            <p class="dl-use" data-i18n="down.win.use">For machines with Node 18+ already installed — tiny and fast to grab.</p>
+            <h3>Rafiq-0.2.0-win-x64-portable.zip</h3>
+            <p class="dl-use" data-i18n="down.portable.use">No installing: unzip anywhere and run Rafiq.exe — from a USB stick if you like.</p>
           </div>
-          <span class="dl-badge" data-i18n="down.win.badge">89 KB</span>
+          <span class="dl-badge" data-i18n="down.portable.badge">Portable</span>
         </div>
         <dl class="dl-specs">
-          <div class="dl-spec"><dt data-i18n="down.platform">Platform</dt><dd>Windows 10 — 11</dd></div>
-          <div class="dl-spec"><dt data-i18n="down.requires">Requires</dt><dd data-i18n="down.win.requires">Node.js 18 or newer</dd></div>
-          <div class="dl-spec"><dt data-i18n="down.size">Size</dt><dd>89 KB</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.platform">Platform</dt><dd data-i18n="down.win.versions">Windows 10 &amp; 11 (64-bit)</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.requires">Requires</dt><dd data-i18n="down.portable.requires">Unzip only</dd></div>
+          <div class="dl-spec"><dt data-i18n="down.size">Size</dt><dd>~90 MB</dd></div>
         </dl>
-        <a class="dl-btn" href="https://github.com/abdokem660-dev/rafiq/releases/download/v0.1.0/rafiq-win.zip" download>
+        <a class="dl-btn" href="https://github.com/abdokem660-dev/rafiq/releases/latest" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-i18n="down.download">Download</span> <span class="dl-size">· 89 KB</span>
+          <span data-i18n="down.download">Download</span> <span class="dl-size">· .zip</span>
         </a>
         <details class="checksum">
-          <summary>SHA-256</summary>
-          FE37C972BEB231C2B16C8FA5ECB33750866877C0DB9E8C7BBFAF7BE621AB8E3A
+          <summary data-i18n="down.sums">Checksums</summary>
+          <span data-i18n="down.sums.body">Every release ships a SHA256SUMS.txt next to the installer.</span>
         </details>
       </article>
     </div>
 
     <p class="dl-note" data-i18n="download.note">
-      Both packages include PowerShell-free, dependency-free scripts: install.bat, start.bat and stop.bat.
-      README.md inside explains every step. Nothing is executed until you run it.
+      The build is not code-signed yet, so Windows SmartScreen may show "Unknown publisher" — choose
+      More info → Run anyway. Prefer to build it yourself? The full source lives in desktop/ and
+      npm run dist:win produces the same installer.
     </p>
   </section>
 
@@ -362,35 +370,35 @@
           <span data-i18n="faq.q1">Do I need Node.js?</span>
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-a"><p data-i18n="faq.a1">No. Take the portable package (rafiq-win7.zip) and Node runs straight from the zip. If you already have Node 18+, the tiny 89 KB package is all you need.</p></div>
+        <div class="faq-a"><p data-i18n="faq.a1">No. The desktop app bundles everything — download the installer or the portable zip, run it and you are done. Node.js is only needed if you want to build Rafiq from source.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
           <span data-i18n="faq.q2">Where is my API key stored?</span>
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-a"><p data-i18n="faq.a2">Only in your browser. Rafiq forwards your request to the provider through a local proxy and never writes the key to disk or any server.</p></div>
+        <div class="faq-a"><p data-i18n="faq.a2">On this computer, encrypted with your Windows account (DPAPI), in %APPDATA%\Rafiq. It is never sent to Rafiq — only to the provider you configured.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
           <span data-i18n="faq.q3">Can Rafiq touch files outside the workspace?</span>
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-a"><p data-i18n="faq.a3">No. The server enforces a path-containment check, respects .rafiq-ignore files, and blocks dangerous shell actions unless you explicitly enable them for the workspace.</p></div>
+        <div class="faq-a"><p data-i18n="faq.a3">No. Every path is resolved and checked against the workspace root, .rafiq-ignore files are respected, dangerous shell actions are blocked unless you unlock them, and every turn can be undone.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
           <span data-i18n="faq.q4">Does it work offline?</span>
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-a"><p data-i18n="faq.a4">The whole app, server and agent loop run locally. The only thing needing the internet is the call to your model provider — because that is where the intelligence lives.</p></div>
+        <div class="faq-a"><p data-i18n="faq.a4">The app, the agent loop and your files are local. The only thing needing the internet is the call to your model provider — unless you point Rafiq at a local model with Ollama or LM Studio.</p></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
           <span data-i18n="faq.q5">How do I update?</span>
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-a"><p data-i18n="faq.a5">Stop the server, replace the files with the new package and start again. Your sessions and settings live on this device and are kept as-is.</p></div>
+        <div class="faq-a"><p data-i18n="faq.a5">Install the newer release over the old one (or unzip the newer portable build). Your sessions and settings live in %APPDATA%\Rafiq and are kept as-is.</p></div>
       </div>
     </div>
   </section>
@@ -399,8 +407,8 @@
   <div class="cta-band">
     <div class="cta-inner reveal">
       <h2 data-i18n="cta.title">Ready when you are.</h2>
-      <p data-i18n="cta.sub">Free, local and yours forever. The descent into your own codebase starts with a single download.</p>
-      <a class="btn btn-primary btn-large" href="https://github.com/abdokem660-dev/rafiq/releases/download/v0.1.0/rafiq-win7.zip" download>
+      <p data-i18n="cta.sub">Free, local and yours forever. Install it on Windows, open a folder, and make your first change in minutes.</p>
+      <a class="btn btn-primary btn-large" href="https://github.com/abdokem660-dev/rafiq/releases/latest" download>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span data-i18n="cta.cta">Download Rafiq</span>
       </a>
@@ -417,9 +425,9 @@
       <span>rafiq<span class="brand-dot">.</span></span>
     </div>
     <div class="footer-meta">
-      <span>v0.1.0</span>
+      <span>v0.2.0</span>
       <span>© 2026 Rafiq</span>
-      <span data-i18n="footer.slogan">Private coding agent for two humans.</span>
+      <span data-i18n="footer.slogan">Private coding agent for Windows. Built to be read.</span>
     </div>
   </div>
 </footer>
