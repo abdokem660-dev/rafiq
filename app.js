@@ -86,8 +86,8 @@
     'down.portable.requires': 'فك ضغط بس',
     'down.size': 'الحجم',
     'down.download': 'تحميل',
-    'down.sums': 'بصمات التحقق',
-    'down.sums.body': 'كل إصدار فيه ملف SHA256SUMS.txt جنب المثبّت.',
+    'down.sums': 'تحقّق من التحميل',
+    'down.sums.body': 'قارن الملف بتاعك مع',
     'download.note': 'النسخة لسه مش موقّعة إلكترونيًا، فممكن ويندوز يعرض تحذير "ناشر غير معروف" — اختار More info ثم Run anyway. ولو عايز تبنيها بنفسك، الكود كله في مجلد desktop و npm run dist:win بيطلع نفس المثبّت.',
 
     'faq.kicker': 'أسئلة شائعة',

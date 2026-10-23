@@ -100,6 +100,30 @@ jobs:
             dist/SHA256SUMS.txt
           if-no-files-found: error
 
+      - name: Write release notes
+        shell: bash
+        working-directory: dist
+        run: |
+          {
+            echo "## Rafiq v${{ steps.version.outputs.version }} — Windows desktop app"
+            echo
+            echo "**Download \`Rafiq-Setup-${{ steps.version.outputs.version }}.exe\`** and run it."
+            echo "The portable build (\`Rafiq-${{ steps.version.outputs.version }}-win-x64.zip\`) unpacks and runs without installing."
+            echo
+            echo "- Private, local-first coding agent: plan → build → discuss"
+            echo "- Bring your own API key (OpenAI, DeepSeek, Groq, OpenRouter, NVIDIA, Ollama…)"
+            echo "- Works only inside the folder you open; every turn can be undone"
+            echo "- Bilingual UI (English / العربية), light & dark themes"
+            echo
+            echo "The installer is not code-signed yet, so Windows SmartScreen may show "Unknown publisher" — choose *More info → Run anyway*."
+            echo
+            echo '### Checksums'
+            echo '```'
+            cat SHA256SUMS.txt
+            echo '```'
+          } > "$RUNNER_TEMP/notes.md"
+          cp "$RUNNER_TEMP/notes.md" RELEASE_NOTES.md
+
       - name: Publish release
         if: steps.version.outputs.publish == 'true'
         uses: softprops/action-gh-release@v2
@@ -108,21 +132,7 @@ jobs:
           name: Rafiq v${{ steps.version.outputs.version }}
           target_commitish: ${{ github.sha }}
           generate_release_notes: true
-          body: |
-            ## Rafiq v${{ steps.version.outputs.version }} — Windows desktop app
-
-            **Download `Rafiq-Setup-${{ steps.version.outputs.version }}.exe`** and run it.
-            The portable build (`Rafiq-${{ steps.version.outputs.version }}-win-x64-portable.zip`)
-            unpacks and runs without installing.
-
-            - Private, local-first coding agent: plan → build → discuss
-            - Bring your own API key (OpenAI, DeepSeek, Groq, OpenRouter, NVIDIA, Ollama…)
-            - Works only inside the folder you open; every turn can be undone
-            - Bilingual UI (English / العربية), light & dark themes
-
-            The installer is not code-signed yet, so Windows SmartScreen may show
-            "Unknown publisher" — choose *More info → Run anyway*.
-            Verify your download against `SHA256SUMS.txt`.
+          body_path: dist/RELEASE_NOTES.md
           files: |
             dist/*.exe
             dist/*.zip

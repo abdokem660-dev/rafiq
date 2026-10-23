@@ -547,6 +547,11 @@ html[data-theme="dark"] .dl-badge { color: var(--accent); }
 .dl-btn svg { width: 20px; height: 20px; }
 .dl-btn .dl-size { font-weight: 600; opacity: .75; font-size: 14px; }
 
+.checksum summary { cursor: pointer; font-family: var(--font); font-size: 12.5px; font-weight: 600; color: var(--text-2); }
+.checksum[open] summary { margin-bottom: 6px; }
+.checksum a { color: var(--accent-tx); font-family: var(--font); font-size: 12.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.checksum a:hover { color: var(--text); }
+
 .checksum {
   font-family: var(--mono);
   font-size: 11.5px;
