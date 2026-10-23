@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self'; connect-src 'self' http://127.0.0.1:* http://localhost:*">
+  <title>Rafiq</title>
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- ══════════ SIDEBAR ══════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="side-brand">
+      <img src="logo.svg" alt="" width="24" height="24" class="brand-mark">
+      <span class="brand-name">rafiq<span class="brand-dot">.</span></span>
+      <span class="brand-tag" data-i18n="brand.tag">local agent</span>
+    </div>
+
+    <button class="workspace" id="btn-workspace" title="Open a project folder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      <span class="ws-copy">
+        <span class="ws-label" data-i18n="ws.none">No folder open</span>
+        <span class="ws-path" id="ws-path">Choose a project…</span>
+      </span>
+      <svg class="ws-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <button class="btn-new" id="btn-new">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <span data-i18n="session.new">New session</span>
+      <kbd>Ctrl N</kbd>
+    </button>
+
+    <div class="side-scroll">
+      <div class="side-heading">
+        <span data-i18n="session.recent">Recent sessions</span>
+        <span class="count" id="session-count">0</span>
+      </div>
+      <div class="session-list" id="session-list"></div>
+
+      <div class="side-heading" data-i18n="side.workspaces">Recent folders</div>
+      <div class="recent-list" id="recent-list"></div>
+    </div>
+
+    <div class="side-footer">
+      <button class="side-btn" id="btn-settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span data-i18n="side.settings">Settings</span>
+      </button>
+      <div class="side-icon-row">
+        <button class="icon-btn" id="btn-theme" title="Theme" aria-label="Toggle theme">
+          <svg id="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="icon-btn" id="btn-lang" title="العربية" aria-label="Switch language">
+          <span id="lang-label">عربي</span>
+        </button>
+        <button class="icon-btn" id="btn-help" title="Help" aria-label="Help">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══════════ MAIN ══════════ -->
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn only-narrow" id="btn-sidebar" aria-label="Toggle sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      <div class="modes" role="tablist" aria-label="Agent mode">
+        <button class="mode" data-mode="plan" role="tab" aria-selected="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span data-i18n="mode.plan">Plan</span>
+        </button>
+        <button class="mode" data-mode="build" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <span data-i18n="mode.build">Build</span>
+        </button>
+        <button class="mode" data-mode="discuss" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span data-i18n="mode.discuss">Discuss</span>
+        </button>
+      </div>
+
+      <div class="topbar-spacer"></div>
+
+      <span class="status-dot" id="status-dot" title="Ready"></span>
+      <span class="status-text" id="status-text">Ready</span>
+
+      <button class="chip-btn" id="btn-undo" hidden title="Restore files to before Rafiq's last turn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M3.51 13a9 9 0 1 0 2.13-9.36L3 7"/></svg>
+        <span data-i18n="undo">Undo changes</span>
+      </button>
+
+      <button class="chip-btn" id="btn-explorer" title="Toggle files panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        <span data-i18n="files">Files</span>
+      </button>
+
+      <button class="chip-btn chip-model" id="btn-model" title="Change model">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/></svg>
+        <span id="model-label">gpt-4.1-mini</span>
+      </button>
+    </header>
+
+    <div class="content">
+      <section class="chat-wrap">
+        <div class="chat" id="chat">
+
+          <div class="welcome" id="welcome">
+            <div class="welcome-mark">
+              <img src="logo.svg" alt="" width="44" height="44">
+            </div>
+            <h1 data-i18n="welcome.title">What should we build today?</h1>
+            <p data-i18n="welcome.sub">Rafiq works only inside the folder you open. Your key stays on this device.</p>
+
+            <div class="quick-grid">
+              <button class="quick" data-prompt="Map this project for me: list the main folders, explain what the app does, and point out the entry points.">
+                <span class="quick-icon">🗺️</span>
+                <span class="quick-title" data-i18n="quick.map.title">Map this project</span>
+                <span class="quick-sub" data-i18n="quick.map.sub">Structure, entry points, how it runs</span>
+              </button>
+              <button class="quick" data-prompt="Read the project and find the most valuable improvements I could make. Give me a prioritised list with reasons.">
+                <span class="quick-icon">✨</span>
+                <span class="quick-title" data-i18n="quick.improve.title">Find improvements</span>
+                <span class="quick-sub" data-i18n="quick.improve.sub">Prioritised, with reasons</span>
+              </button>
+              <button class="quick" data-prompt="Run the project's build or test command and report any errors you find, with the exact fixes.">
+                <span class="quick-icon">🧪</span>
+                <span class="quick-title" data-i18n="quick.test.title">Run &amp; fix tests</span>
+                <span class="quick-sub" data-i18n="quick.test.sub">Build, test, repair</span>
+              </button>
+              <button class="quick" data-prompt="Explain how the code in this workspace works, starting from its entry point. Use simple words.">
+                <span class="quick-icon">💬</span>
+                <span class="quick-title" data-i18n="quick.explain.title">Explain the code</span>
+                <span class="quick-sub" data-i18n="quick.explain.sub">Plain-language walkthrough</span>
+              </button>
+            </div>
+
+            <div class="welcome-foot">
+              <span><strong>1.</strong> <span data-i18n="welcome.step1">Open a folder</span></span>
+              <span><strong>2.</strong> <span data-i18n="welcome.step2">Add a key in Settings</span></span>
+              <span><strong>3.</strong> <span data-i18n="welcome.step3">Describe a goal</span></span>
+            </div>
+          </div>
+
+          <div class="messages" id="messages"></div>
+        </div>
+
+        <div class="composer-wrap">
+          <div class="composer" id="composer">
+            <div class="attachments" id="attachments"></div>
+            <textarea id="input" rows="1" placeholder="Describe a goal, ask a question, or paste an error…" data-i18n-ph="composer.ph"></textarea>
+            <div class="composer-bar">
+              <div class="composer-left">
+                <button class="tool-btn" id="btn-attach" title="Attach an open file">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                  <span data-i18n="composer.attach">Attach</span>
+                </button>
+                <span class="composer-hint"><kbd>Enter</kbd> <span data-i18n="composer.send">send</span> · <kbd>Shift</kbd>+<kbd>Enter</kbd> <span data-i18n="composer.newline">new line</span></span>
+              </div>
+              <div class="composer-right">
+                <button class="btn-stop" id="btn-stop" hidden>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+                  <span data-i18n="composer.stop">Stop</span>
+                </button>
+                <button class="btn-send" id="btn-send" aria-label="Send">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <p class="fineprint" data-i18n="composer.fine">Rafiq can make mistakes. Review changes before you ship — and use Undo if a turn goes wrong.</p>
+        </div>
+      </section>
+
+      <aside class="explorer" id="explorer" hidden>
+        <div class="explorer-head">
+          <span data-i18n="explorer.title">Files</span>
+          <div class="explorer-actions">
+            <button class="icon-btn sm" id="btn-refresh" title="Refresh">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            </button>
+            <button class="icon-btn sm" id="btn-close-explorer" title="Close">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="file-tree" id="file-tree"></div>
+        <div class="file-view" id="file-view" hidden>
+          <div class="file-view-head">
+            <span id="file-name">file</span>
+            <div>
+              <button class="icon-btn sm" id="btn-copy-file" title="Copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+              <button class="icon-btn sm" id="btn-add-file" title="Add to chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button>
+              <button class="icon-btn sm" id="btn-close-file" title="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            </div>
+          </div>
+          <pre class="file-code" id="file-code"></pre>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<!-- ══════════ SETTINGS MODAL ══════════ -->
+<div class="modal" id="modal-settings" hidden>
+  <div class="modal-card settings-card" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="modal-head">
+      <h2 id="settings-title" data-i18n="settings.title">Settings</h2>
+      <button class="icon-btn" data-close="modal-settings" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <section class="form-section">
+        <h3 data-i18n="settings.model">Model provider</h3>
+        <p class="form-note" data-i18n="settings.modelNote">Rafiq talks to any OpenAI-compatible API. Your key is stored only on this computer.</p>
+
+        <label class="field">
+          <span data-i18n="settings.provider">Provider</span>
+          <select id="set-provider"></select>
+        </label>
+
+        <label class="field">
+          <span data-i18n="settings.baseUrl">API base URL</span>
+          <input id="set-baseurl" type="text" spellcheck="false" placeholder="https://api.openai.com/v1">
+        </label>
+
+        <label class="field">
+          <span data-i18n="settings.apiKey">API key</span>
+          <div class="key-row">
+            <input id="set-apikey" type="password" spellcheck="false" placeholder="sk-…" autocomplete="off">
+            <button class="btn-ghost sm" id="btn-toggle-key" type="button" data-i18n="settings.show">Show</button>
+          </div>
+          <small class="field-hint" id="key-hint" data-i18n="settings.keyHint">Stored in your local Rafiq data folder, protected by your Windows account.</small>
+        </label>
+
+        <label class="field">
+          <span data-i18n="settings.modelName">Model</span>
+          <div class="key-row">
+            <input id="set-model" type="text" list="model-options" spellcheck="false" placeholder="gpt-4.1-mini">
+            <button class="btn-ghost sm" id="btn-fetch-models" type="button" data-i18n="settings.fetch">Fetch</button>
+          </div>
+          <datalist id="model-options"></datalist>
+        </label>
+
+        <label class="field field-row">
+          <span data-i18n="settings.temp">Creativity</span>
+          <input id="set-temp" type="range" min="0" max="1" step="0.1">
+          <output id="temp-out">0.2</output>
+        </label>
+      </section>
+
+      <section class="form-section">
+        <h3 data-i18n="settings.safety">Safety</h3>
+        <label class="toggle">
+          <input type="checkbox" id="set-approve-commands">
+          <span class="toggle-ui"></span>
+          <span>
+            <strong data-i18n="settings.confirmCmd">Ask before running commands</strong>
+            <small data-i18n="settings.confirmCmdNote">Recommended. You see every command before it runs.</small>
+          </span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="set-dangerous">
+          <span class="toggle-ui"></span>
+          <span>
+            <strong data-i18n="settings.danger">Allow dangerous commands</strong>
+            <small data-i18n="settings.dangerNote">Unlocks disk/registry style commands. Keep this off unless you know exactly why.</small>
+          </span>
+        </label>
+      </section>
+
+      <section class="form-section">
+        <h3 data-i18n="settings.general">General</h3>
+        <div class="field-grid">
+          <label class="field">
+            <span data-i18n="settings.lang">Language</span>
+            <select id="set-lang">
+              <option value="en">English</option>
+              <option value="ar">العربية</option>
+            </select>
+          </label>
+          <label class="field">
+            <span data-i18n="settings.theme">Theme</span>
+            <select id="set-theme">
+              <option value="dark" data-i18n="settings.dark">Dark</option>
+              <option value="light" data-i18n="settings.light">Light</option>
+            </select>
+          </label>
+        </div>
+        <label class="field">
+          <span data-i18n="settings.name">Your name (optional)</span>
+          <input id="set-name" type="text" placeholder="Ahmed">
+        </label>
+        <div class="meta-row" id="app-meta"></div>
+      </section>
+    </div>
+
+    <div class="modal-foot">
+      <span class="save-state" id="save-state"></span>
+      <div>
+        <button class="btn-ghost" data-close="modal-settings" data-i18n="settings.close">Close</button>
+        <button class="btn-primary" id="btn-save-settings" data-i18n="settings.save">Save settings</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ APPROVAL MODAL ══════════ -->
+<div class="modal" id="modal-approval" hidden>
+  <div class="modal-card narrow" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2 id="approval-title">Run this command?</h2>
+    </div>
+    <div class="modal-body">
+      <p id="approval-reason" class="form-note"></p>
+      <pre class="approval-code" id="approval-detail"></pre>
+      <p class="warn-line" id="approval-warn" hidden></p>
+    </div>
+    <div class="modal-foot">
+      <span></span>
+      <div>
+        <button class="btn-ghost" id="btn-deny" data-i18n="approval.deny">Deny</button>
+        <button class="btn-primary" id="btn-allow" data-i18n="approval.allow">Run it</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ WORKSPACE MODAL (browser mode) ══════════ -->
+<div class="modal" id="modal-workspace" hidden>
+  <div class="modal-card narrow" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2 data-i18n="ws.choose">Open a project folder</h2>
+      <button class="icon-btn" data-close="modal-workspace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p class="form-note" data-i18n="ws.browserNote">Paste the full path of a folder on this computer. Rafiq will never read outside it.</p>
+      <label class="field">
+        <span data-i18n="settings.baseUrl">Folder path</span>
+        <input id="ws-input" type="text" spellcheck="false" placeholder="C:\Users\you\projects\my-app">
+      </label>
+      <div class="recent-list" id="ws-recents"></div>
+    </div>
+    <div class="modal-foot">
+      <span></span>
+      <button class="btn-primary" id="ws-open" data-i18n="ws.open">Open folder</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ HELP MODAL ══════════ -->
+<div class="modal" id="modal-help" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2 data-i18n="help.title">How Rafiq works</h2>
+      <button class="icon-btn" data-close="modal-help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body help-body">
+      <ol class="help-steps">
+        <li><strong data-i18n="help.s1t">Open a folder.</strong> <span data-i18n="help.s1b">Rafiq can only read and write inside that folder. Everything else on your disk is out of reach.</span></li>
+        <li><strong data-i18n="help.s2t">Add your key.</strong> <span data-i18n="help.s2b">Settings → pick a provider → paste an API key. It is stored on this computer only and sent straight to the provider.</span></li>
+        <li><strong data-i18n="help.s3t">Plan first.</strong> <span data-i18n="help.s3b">In Plan mode Rafiq studies the code read-only and writes a plan. Approve it to switch to Build, or just chat in Discuss mode.</span></li>
+        <li><strong data-i18n="help.s4t">Stay safe.</strong> <span data-i18n="help.s4b">Commands need your approval, dangerous actions are blocked, and every file change can be undone.</span></li>
+      </ol>
+      <div class="shortcuts">
+        <h3 data-i18n="help.keys">Keyboard</h3>
+        <div><kbd>Enter</kbd><span data-i18n="help.k1">Send message</span></div>
+        <div><kbd>Shift+Enter</kbd><span data-i18n="help.k2">New line</span></div>
+        <div><kbd>Ctrl+N</kbd><span data-i18n="help.k3">New session</span></div>
+        <div><kbd>Ctrl+O</kbd><span data-i18n="help.k4">Open folder</span></div>
+        <div><kbd>Ctrl+,</kbd><span data-i18n="help.k5">Settings</span></div>
+        <div><kbd>Esc</kbd><span data-i18n="help.k6">Stop the agent</span></div>
+      </div>
+      <p class="fineprint" data-i18n="help.footer">Rafiq is open source — github.com/abdokem660-dev/rafiq</p>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
