@@ -7,6 +7,7 @@ const sharp = require('sharp');
 
 const OUT = path.join(__dirname, '..', 'build');
 const SIZES = [16, 24, 32, 48, 64, 128, 256, 512];
+const ICO_SIZES = new Set([16, 24, 32, 48, 64, 128, 256]);
 
 function svg(size, { padding = 0.16, rounded = true } = {}) {
   const pad = size * padding;
@@ -61,8 +62,9 @@ function icoFromPngs(entries) {
   const entries = [];
   for (const size of SIZES) {
     const png = await sharp(Buffer.from(svg(size))).png({ compressionLevel: 9 }).toBuffer();
-    entries.push({ size, png });
+    if (ICO_SIZES.has(size)) entries.push({ size, png });
     if (size === 512) fs.writeFileSync(path.join(OUT, 'icon.png'), png);
+    if (size === 256) fs.writeFileSync(path.join(OUT, 'logo-256.png'), png);
     if (size === 256) fs.writeFileSync(path.join(OUT, 'icon-256.png'), png);
   }
   fs.writeFileSync(path.join(OUT, 'icon.ico'), icoFromPngs(entries));
