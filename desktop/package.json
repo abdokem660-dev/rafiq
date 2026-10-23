@@ -55,7 +55,6 @@
         }
       ],
       "icon": "build/icon.png",
-      "publisherName": "Rafiq",
       "legalTrademarks": "Rafiq",
       "requestedExecutionLevel": "asInvoker"
     },
@@ -71,9 +70,8 @@
       "uninstallDisplayName": "Rafiq ${version}",
       "deleteAppDataOnUninstall": false
     },
-    "zip": {
-      "artifactName": "Rafiq-${version}-win-x64-portable.${ext}"
-    }
+    "artifactName": "Rafiq-${version}-win-x64.${ext}",
+    "npmRebuild": false
   },
   "homepage": "https://github.com/abdokem660-dev/rafiq",
   "repository": {
