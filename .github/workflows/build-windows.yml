@@ -44,6 +44,7 @@ jobs:
         run: |
           node test/run.js
           node test/e2e.js
+          node test/ui-smoke.js
 
       - name: Decide version
         id: version

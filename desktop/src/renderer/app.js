@@ -335,7 +335,8 @@
       if (ol || ul) {
         const want = ol ? 'ol' : 'ul';
         if (list !== want) { closeList(); out.push(`<${want}>`); list = want; }
-        out.push(`<li>${inline((ol || ul)[1] || '')}</li>`);
+        const item = ol ? ol[2] : ul[1];
+        out.push(`<li>${inline(item || '')}</li>`);
         continue;
       }
       closeList();

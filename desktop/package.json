@@ -1,7 +1,7 @@
 {
   "name": "rafiq-desktop",
   "productName": "Rafiq",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Rafiq \u2014 your private, local-first coding agent for Windows",
   "main": "src/main/main.js",
   "author": {
@@ -13,16 +13,18 @@
   "scripts": {
     "start": "electron .",
     "server": "node src/main/server.js",
-    "test": "node test/run.js && node test/e2e.js",
+    "test": "node test/run.js && node test/e2e.js && node test/ui-smoke.js",
     "test:unit": "node test/run.js",
     "test:e2e": "node test/e2e.js",
     "icon": "node scripts/make-icon.js",
     "dist:win": "electron-builder --win nsis zip --x64",
-    "dist:dir": "electron-builder --dir --win"
+    "dist:dir": "electron-builder --dir --win",
+    "test:ui": "node test/ui-smoke.js"
   },
   "devDependencies": {
     "electron": "^45.0.0",
     "electron-builder": "^26.0.0",
+    "jsdom": "^30.1.3",
     "sharp": "^0.34.0"
   },
   "build": {

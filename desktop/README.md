@@ -65,7 +65,10 @@ cd desktop
 npm install
 npm start          # run the Electron app
 npm run server     # run the UI in a browser at http://127.0.0.1:4123
-npm test           # unit + end-to-end tests (no network needed)
+npm test              # unit + end-to-end + UI smoke tests (no network needed)
+npm run test:unit     # workspace, safety, store, agent
+npm run test:e2e      # mock provider drives the real agent loop
+npm run test:ui       # jsdom boots the UI and clicks through it
 npm run dist:win   # build the Windows installer and portable zip
 ```
 
@@ -92,7 +95,9 @@ desktop/
   src/main/store.js      settings/sessions (atomic JSON writes, DPAPI keys)
   src/main/server.js     optional localhost HTTP mode (same UI, same agent)
   src/renderer/          zero-dependency UI (markdown, i18n, RTL, themes)
-  test/                  unit tests + mock-provider end-to-end test
+  test/run.js            unit tests (sandbox, safety, store, agent, provider)
+  test/e2e.js            mock-provider end-to-end test over the local server
+  test/ui-smoke.js       jsdom smoke test of the real renderer
 ```
 
 ## Releases
