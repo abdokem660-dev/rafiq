@@ -570,6 +570,8 @@
     scrollChat();
   }
 
+  let lastAssistantNode = null;
+
   function addAssistantMessage(content) {
     const node = el('div', 'msg assistant');
     node.innerHTML = `
@@ -584,6 +586,7 @@
     copy.addEventListener('click', () => { copyText(content || ''); });
     $('.msg-actions', node).appendChild(copy);
     messages().appendChild(node);
+    lastAssistantNode = node;
     scrollChat();
     return node;
   }
@@ -747,6 +750,7 @@
       copy.addEventListener('click', () => { copyText(liveText); });
       actions.appendChild(copy);
       $('.msg-body', liveAssistant).appendChild(actions);
+      lastAssistantNode = liveAssistant;
     }
     liveAssistant = null;
     liveText = '';
@@ -833,6 +837,10 @@
         break;
       case 'plan':
         endAssistant();
+        if (lastAssistantNode && lastAssistantNode.parentElement) {
+          lastAssistantNode.remove();
+          lastAssistantNode = null;
+        }
         addPlanCard(event.content);
         break;
       case 'error':

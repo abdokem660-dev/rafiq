@@ -54,7 +54,7 @@
           ]
         }
       ],
-      "icon": "build/icon.ico",
+      "icon": "build/icon.png",
       "publisherName": "Rafiq",
       "legalTrademarks": "Rafiq",
       "requestedExecutionLevel": "asInvoker"
